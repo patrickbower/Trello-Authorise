@@ -1,0 +1,39 @@
+{
+  "name": "simple-boilerplate",
+  "version": "1.0.0",
+  "description": "Retail demonstration of device / service features",
+  "main": "index.js",
+  "scripts": {
+    "start": "./start.sh",
+    "deploy": "./deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://patrickbower-dd@github.com/patrickbower/simple-boilerplate.git"
+  },
+  "author": "Patrick Bower",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickbower/simple-boilerplate/issues"
+  },
+  "homepage": "https://github.com/patrickbower/simple-boilerplate#readme",
+  "devDependencies": {
+    "animate.css": "^3.5.2",
+    "babel-preset-es2015": "^6.24.0",
+    "babelify": "^7.3.0",
+    "bootstrap-sass": "^3.3.7",
+    "grunt": "^1.0.3",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-includes": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "jquery": "^3.1.1",
+    "load-grunt-tasks": "^3.5.2"
+  },
+  "dependencies": {
+    "global": "^4.3.2"
+  }
+}

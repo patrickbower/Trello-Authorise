@@ -1,0 +1,8 @@
+{
+  "name": "Trello Authorize",
+  "description": "Trello Authorize",
+  "icons": [{
+    "src": "images/icon.png",
+    "sizes": "192x192"
+  }]
+}
