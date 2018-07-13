@@ -1,4 +1,4 @@
-/*! simple-boilerplate 2018-07-11 */
+/*! simple-boilerplate 2018-07-13 */
 
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 /*!
@@ -10377,9 +10377,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _jquery2.default)('document').ready(function () {
   run();
-}); /*
-     * npm managed scripts
-     */
+});
+
+/*
+ * Steps to auth user and allow interactions
+ * 
+ * 1.  Wait for scripts to load
+ * 2.  Run window.Trello.authorize function
+ * 3a. If authenticationFailure - handle error and show to user
+ * 3b. If authenticationSuccess - continue...
+ * 4.  Store token and key
+ * 5.  Get array of boards
+ * 6.  Find board with name of 'Forty40' and store board id
+ * 7.  Test for access to board using board id, token and key
+ * 8a. If boardFailure - handle error and show to user
+ * 8b. If boardSuccess - display content to user
+ * 
+ */
+
+/*
+ * npm managed scripts
+ */
 
 /*
 * Custom scripts
@@ -10389,11 +10407,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // one();
 
 /* jQuery */
-
-
 function run() {
-  console.log('run auth', window.Trello);
-
   var authenticationSuccess = function authenticationSuccess() {
     console.log('Successful authentication');
 
@@ -10403,19 +10417,23 @@ function run() {
     // get private public key (should be global for both 
     // Trello's client.js inital call and ongoing calls).
 
-    var list = '5b45ea4aecc023a9fbb7ee01';
+    // var list = `5b45ea4aecc023a9fbb7ee01`;
     var key = 'bb6807f13b020310a0543a81ebf10765';
     var vaidation = '?key=' + key + '&token=' + token;
+    // var board_id = `5b45ea4aecc023a9fbb7ee01`;
 
-    var board_id = '5b45ea4aecc023a9fbb7ee01';
-
-    // var url = `https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`;
-    var boardsURL = 'https://api.trello.com/1/boards/' + board_id + ('' + vaidation);
+    var url = 'https://api.trello.com/1/members/me/boards?key=' + key + '&token=' + token;
+    // var boardsURL = `https://api.trello.com/1/boards/${board_id}` + `${vaidation}`;
 
     _jquery2.default.ajax({
-      url: boardsURL
+      url: url
     }).done(function (data) {
-      console.log(data);
+      var board = data.find(function (board) {
+        return board.name = 'Forty40';
+      });
+      var board_id = board.id;
+      console.log(board_id);
+      // reuse the ajax function to call the board data
     }).fail(function (err) {
       error('Trello board', err.responseText);
     });
